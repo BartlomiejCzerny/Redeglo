@@ -1,0 +1,138 @@
+<mat-toolbar color="primary">
+  <mat-icon>event_available</mat-icon>
+  <h1 mat-dialog-title>Rezerwacja orlika</h1>
+  <mat-icon class="closeDialog" (click)="closeDialog()">cancel</mat-icon>
+</mat-toolbar>
+<mat-card>
+  <form [formGroup]="bookingService.bookingForm" class="booking-form">
+    <input type="hidden" formControlName="$key">
+    <div class="input-container">
+      <div class="input-field">
+        <mat-form-field class="field-width">
+          <input matInput formControlName="date" placeholder="Data rezerwacji" tabindex="1" [matDatepicker]="myDatepicker" [matDatepickerFilter]="filterDate()">
+          <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+          <mat-datepicker #myDatepicker></mat-datepicker>
+          <mat-error *ngIf="bookingService.bookingForm.controls['date'].errors?.required">Wybierz datę rezerwacji.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="input-field input-space">
+        <mat-form-field class="field-width">
+          <input matInput formControlName="firstName" placeholder="Imię" tabindex="6">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="bookingService.bookingForm.controls['firstName'].errors?.required">Wprowadź imię.</mat-error>
+          <mat-error *ngIf="bookingService.bookingForm.controls['firstName'].errors?.pattern">Wprowadź prawidłowe imię.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="input-field">
+        <mat-form-field class="field-width">
+          <input matInput formControlName="lastName" placeholder="Nazwisko" tabindex="7">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="bookingService.bookingForm.controls['lastName'].errors?.required">Wprowadź nazwisko.</mat-error>
+          <mat-error *ngIf="bookingService.bookingForm.controls['lastName'].errors?.pattern">Wprowadź prawidłowe nazwisko.</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="input-container">
+      <div class="input-field">
+        <mat-form-field class="field-width">
+          <input matInput formControlName="startTime" placeholder="Godzina rozpoczęcia" type="time" step="3600" pattern="[0-9]{2}:0{2}" tabindex="2">
+          <mat-icon matSuffix>timer</mat-icon>
+          <mat-error *ngIf="bookingService.bookingForm.controls['startTime'].errors?.required">Wybierz godzinę rozpoczęcia.</mat-error>
+          <mat-error *ngIf="bookingService.bookingForm.controls['startTime'].errors?.min">Rezerwacje zaczynamy o 9:00.</mat-error>
+          <mat-error *ngIf="bookingService.bookingForm.controls['startTime'].errors?.max">Można rezerwować do 21:00.</mat-error>
+          <mat-error *ngIf="bookingService.bookingForm.controls['startTime'].errors?.invalid">Godzina jest niedostępna.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="input-field input-space">
+        <mat-form-field class="field-width">
+          <input matInput formControlName="zipCode" placeholder="Kod pocztowy" tabindex="8">
+          <mat-icon matSuffix>local_post_office</mat-icon>
+          <mat-error *ngIf="bookingService.bookingForm.controls['zipCode'].errors?.required">Wprowadź kod pocztowy.</mat-error>
+          <mat-error *ngIf="bookingService.bookingForm.controls['zipCode'].errors?.pattern">Wprowadź prawidłowy kod pocztowy.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="input-field">
+        <mat-form-field class="field-width">
+          <input matInput formControlName="place" placeholder="Miejscowość" tabindex="9">
+          <mat-icon matSuffix>home</mat-icon>
+          <mat-error *ngIf="bookingService.bookingForm.controls['place'].errors?.required">Wprowadź miejscowość.</mat-error>
+          <mat-error *ngIf="bookingService.bookingForm.controls['place'].errors?.pattern">Wprowadź prawidłową miejscowość.</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="input-container">
+      <div class="input-field">
+        <mat-form-field class="field-width">
+          <input matInput formControlName="endTime" placeholder="Godzina zakończenia" type="time" step="3600" pattern="[0-9]{2}:0{2}" tabindex="3">
+          <mat-icon matSuffix>timer_off</mat-icon>
+          <mat-error *ngIf="bookingService.bookingForm.controls['endTime'].errors?.required">Wybierz godzinę zakończenia.</mat-error>
+          <mat-error *ngIf="bookingService.bookingForm.controls['endTime'].errors?.min">Rezerwacje kończymy najszybciej o 10:00.</mat-error>
+          <mat-error *ngIf="bookingService.bookingForm.controls['endTime'].errors?.max">Rezerwacje kończymy o 22:00.</mat-error>
+          <mat-error *ngIf="bookingService.bookingForm.controls['endTime'].errors?.invalid">Godzina jest niedostępna.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="input-field input-space">
+        <mat-form-field class="field-width">
+          <input matInput formControlName="street" placeholder="Ulica" tabindex="10">
+          <mat-icon matSuffix>home</mat-icon>
+          <mat-error *ngIf="bookingService.bookingForm.controls['street'].errors?.pattern">Wprowadź prawidłową ulicę.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="input-field">
+        <mat-form-field class="field-width">
+          <input matInput formControlName="houseNumber" placeholder="Numer domu" tabindex="11">
+          <mat-icon matSuffix>home</mat-icon>
+          <mat-error *ngIf="bookingService.bookingForm.controls['houseNumber'].errors?.required">Wprowadź numer domu.</mat-error>
+          <mat-error *ngIf="bookingService.bookingForm.controls['houseNumber'].errors?.pattern">Wprowadź prawidłowy numer domu.</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="input-container">
+      <div class="input-field">
+        <mat-form-field class="field-width">
+          <input matInput formControlName="persons" type="number" placeholder="Liczba osób" tabindex="4">
+          <mat-icon matSuffix>group</mat-icon>
+          <mat-error *ngIf="bookingService.bookingForm.controls['persons'].errors?.required">Wprowadź liczbę osób.</mat-error>
+          <mat-error *ngIf="bookingService.bookingForm.controls['persons'].errors?.min">Musi być minimalnie 4 osoby.</mat-error>
+          <mat-error *ngIf="bookingService.bookingForm.controls['persons'].errors?.max">Musi być maksymalnie 25 osób.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="input-field input-space">
+        <mat-form-field class="field-width">
+          <input matInput formControlName="email" placeholder="Email">
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="bookingService.bookingForm.controls['email'].errors?.required">Wprowadź email.</mat-error>
+          <mat-error *ngIf="bookingService.bookingForm.controls['email'].errors?.email">Wprowadź prawidłowy email.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="input-field">
+        <mat-form-field class="field-width">
+          <input matInput formControlName="phone" placeholder="Telefon" tabindex="12">
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-error *ngIf="bookingService.bookingForm.controls['phone'].errors?.required">Wprowadź telefon.</mat-error>
+          <mat-error *ngIf="bookingService.bookingForm.controls['phone'].errors?.pattern">Wprowadź prawidłowy telefon.</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="input-container">
+      <div class="input-field">
+        <mat-form-field class="field-width">
+          <input matInput formControlName="institution" placeholder="Instytucja" tabindex="5">
+          <mat-icon matSuffix>location_city</mat-icon>
+          <mat-error *ngIf="bookingService.bookingForm.controls['institution'].errors?.pattern">Wprowadź prawidłową instytucję.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="input-field input-space">
+        <mat-checkbox formControlName="personalData" color="primary" tabindex="13">
+          <p>
+            Wyrażam zgodę na przetwarzanie moich danych osobowych w celu<br>
+            realizacji usługi oraz akceptuję regulamin internetowej rezerwacji<br>
+            orlika Redeglo.
+          </p>
+        </mat-checkbox>
+      </div>
+    </div>
+    <button mat-raised-button color="primary" [disabled]="bookingService.bookingForm.invalid" (click)="book()">Zarezerwuj</button>
+    <button mat-raised-button color="warn" (click)="clearBookingForm()">Wyczyść</button>
+  </form>
+</mat-card>

@@ -1,0 +1,17 @@
+h1, button {
+  display: block;
+  margin: 0 auto;
+  color: #ffffff;
+}
+
+div > p {
+  text-align: left;
+}
+
+mat-toolbar {
+  background-color: #f44336;
+}
+
+mat-icon {
+  color: #ffffff;
+}

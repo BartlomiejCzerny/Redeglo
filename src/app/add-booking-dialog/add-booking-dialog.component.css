@@ -1,0 +1,72 @@
+form.normal-form {
+  margin: 10px;
+}
+
+.booking-form {
+  min-width: 150px;
+  max-width: 300px;
+  width: 100%;
+}
+
+mat-card {
+  height: 100%;
+}
+
+h1 {
+  margin: 0 auto;
+}
+
+button {
+  margin-left: 20px;
+}
+
+.input-container {
+  display: flex;
+}
+
+.input-field {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.input-space {
+  margin-left: 100px;
+}
+
+p {
+  font-size: 12px;
+}
+
+.closeDialog {
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  :host {
+    max-height: 80vh;
+    flex-direction: column;
+    display: flex;
+  }
+
+  mat-toolbar {
+    flex: 0 0 auto;
+  }
+  .input-container {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+
+  .input-field {
+    margin: 0;
+  }
+
+  .input-spacer {
+    margin: 0;
+  }
+
+  .booking-form {
+    margin: auto;
+  }
+}

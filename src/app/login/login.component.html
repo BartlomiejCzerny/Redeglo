@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Logowanie</mat-card-title>
+    <mat-card-subtitle>Zaloguj się i korzystaj z systemu internetowej rezerwacji orlika.</mat-card-subtitle>
+  </mat-card-header>
+  <form class="login-form" #loginForm="ngForm">
+    <mat-form-field class="field-width">
+      <input matInput name="email" type="email" placeholder="Email" [(ngModel)]="userData.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" #email="ngModel" required>
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-error *ngIf="loginForm.getControl(email)?.invalid">Email jest nieprawidłowy lub nie został wprowadzony.</mat-error>
+    </mat-form-field>
+    <mat-form-field class="field-width">
+      <input matInput name="password" type="password" placeholder="Hasło" [type]="hide ? 'password' : 'text'" [(ngModel)]="userData.password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" #password="ngModel" required>
+      <mat-icon class="password-visibility" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="loginForm.getControl(password)?.invalid">Hasło jest nieprawidłowe lub nie zostało wprowadzone.</mat-error>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary" (click)="login()">Zaloguj</button>
+    </div>
+  </form>
+</mat-card>

@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Rejestracja</mat-card-title>
+    <mat-card-subtitle>Zarejestruj konto użytkownika i dołącz do nas.</mat-card-subtitle>
+  </mat-card-header>
+  <form class="registration-form" #registrationForm="ngForm">
+    <mat-form-field class="field-width">
+      <input matInput name="email" type="email" placeholder="Email" [(ngModel)]="userData.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" #email="ngModel" required>
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-error *ngIf="registrationForm.getControl(email)?.invalid">Wprowadzono email w nieprawidłowym formacie.</mat-error>
+    </mat-form-field>
+    <mat-form-field class="field-width">
+      <input matInput name="password" type="password" placeholder="Hasło" [type]="hide ? 'password' : 'text'" [(ngModel)]="userData.password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" #password="ngModel" required>
+      <mat-icon class="password-visibility" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="registrationForm.getControl(password)?.invalid">Hasło musi zawierać co najmniej jedną cyfrę, wielką i małą literę oraz co najmniej 8 znaków.</mat-error>
+    </mat-form-field>
+    <mat-form-field class="field-width">
+      <input matInput name="confirmPassword" type="password" placeholder="Powtórz hasło" [type]="hide ? 'password' : 'text'" [(ngModel)]="userData.confirmPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" #confirmPassword="ngModel" required>
+      <mat-icon class="password-visibility" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="registrationForm.getControl(confirmPassword)?.invalid">Hasło musi zawierać co najmniej jedną cyfrę, wielką i małą literę oraz co najmniej 8 znaków.</mat-error>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary" (click)="register()">Zarejestruj</button>
+    </div>
+  </form>
+</mat-card>

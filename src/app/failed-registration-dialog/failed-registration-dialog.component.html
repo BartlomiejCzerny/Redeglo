@@ -1,0 +1,21 @@
+<mat-toolbar>
+  <mat-icon>error</mat-icon>
+  <h1 mat-dialog-title>Błąd rejestracji</h1>
+</mat-toolbar>
+<mat-card>
+  <div mat-dialog-content>
+    <p>Próba rejestracji zakończyła się niepowodzeniem.</p>
+    <p>Oto możliwe przyczyny:</p>
+    <ol>
+      <li>Email nie został wprowadzony.</li>
+      <li>Email został wprowadzony w nieprawidłowym formacie.</li>
+      <li>Konto z podanym adresem email istnieje.</li>
+      <li>Hasło nie zostało wprowadzone.</li>
+      <li>Hasło zostało wprowadzone w nieprawidłowym formacie.</li>
+      <li>Wprowadzone hasła różnią się.</li>
+    </ol>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="closeDialog()">OK</button>
+  </div>
+</mat-card>

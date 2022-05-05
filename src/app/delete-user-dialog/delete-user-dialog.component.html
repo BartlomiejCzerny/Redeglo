@@ -1,0 +1,13 @@
+<mat-toolbar>
+  <mat-icon>warning</mat-icon>
+  <h1 mat-dialog-title>Usuwanie konta</h1>
+</mat-toolbar>
+<mat-card>
+  <div mat-dialog-content>
+    <p>Operacja ta jest nieodwracalna. Czy na pewno chcesz usunąć to konto?</p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="deleteUser()" cdkFocusInitial>OK</button>
+    <button mat-raised-button color="primary" (click)="closeDialog()">Anuluj</button>
+  </div>
+</mat-card>

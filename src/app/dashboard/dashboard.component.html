@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-header>
+    <mat-icon>account_circle</mat-icon> {{email}}
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <div class="option-container">
+    <mat-card class="dashboard-option logout" (click)="logout()">
+      <mat-icon class="dashboard-icon">exit_to_app</mat-icon>
+      <span>Wyloguj</span>
+    </mat-card>
+    <mat-card class="dashboard-option change-password" (click)="openChangePasswordDialog()">
+      <mat-icon class="dashboard-icon">autorenew</mat-icon>
+      <span>Zmień hasło</span>
+    </mat-card>
+    <mat-card class="dashboard-option change-email" (click)="openChangeEmailDialog()">
+      <mat-icon class="dashboard-icon">drafts</mat-icon>
+      <span>Zmień adres email</span>
+    </mat-card>
+    <mat-card class="dashboard-option delete-user" (click)="openDeleteUserDialog()">
+      <mat-icon class="dashboard-icon">delete_forever</mat-icon>
+      <span>Usuń konto</span>
+    </mat-card>
+  </div>
+</mat-card>

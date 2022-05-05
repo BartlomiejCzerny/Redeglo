@@ -1,0 +1,20 @@
+<mat-toolbar>
+  <mat-icon>error</mat-icon>
+  <h1 mat-dialog-title>Błąd logowania</h1>
+</mat-toolbar>
+<mat-card>
+  <div mat-dialog-content>
+    <p>Próba logowania zakończyła się niepowodzeniem.</p>
+    <p>Oto możliwe przyczyny:</p>
+    <ol>
+      <li>Email nie został wprowadzony.</li>
+      <li>Email został wprowadzony w nieprawidłowym formacie.</li>
+      <li>Email nie jest powiązany z żadnym kontem.</li>
+      <li>Hasło nie zostało wprowadzone.</li>
+      <li>Hasło jest nieprawidłowe.</li>
+    </ol>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="closeDialog()">OK</button>
+  </div>
+</mat-card>

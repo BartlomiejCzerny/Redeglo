@@ -1,0 +1,12 @@
+h1, button {
+  display: block;
+  margin: 0 auto;
+}
+
+div > p {
+  text-align: left;
+}
+
+mat-toolbar {
+  background-color: #ffeb3b;
+}

@@ -1,0 +1,16 @@
+<mat-toolbar>
+  <mat-icon>error</mat-icon>
+  <h1 mat-dialog-title>Błąd usuwania konta</h1>
+</mat-toolbar>
+<mat-card>
+  <div mat-dialog-content>
+    <p>Próba usunięcia konta zakończyła się niepowodzeniem.</p>
+    <p>
+      Aby usunąć konto, użytkownik musi być niedawno zalogowany.
+      Wyloguj się, następnie zaloguj ponownie i spróbuj usunąć konto.
+    </p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="closeDialog()">OK</button>
+  </div>
+</mat-card>

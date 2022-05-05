@@ -1,0 +1,23 @@
+<mat-toolbar>
+  <mat-icon>error</mat-icon>
+  <h1 mat-dialog-title>Błąd zmiany emaila</h1>
+</mat-toolbar>
+<mat-card>
+  <div mat-dialog-content>
+    <p>Próba zmiany adresu email zakończyła się niepowodzeniem.</p>
+    <p>Oto możliwe przyczyny:</p>
+    <ol>
+      <li>Email nie został wprowadzony.</li>
+      <li>Email został wprowadzony w nieprawidłowym formacie.</li>
+      <li>Konto z podanym adresem email istnieje.</li>
+      <li>Wprowadzone adresy email różnią się.</li>
+    </ol>
+    <p>
+      Aby zmienić email, użytkownik musi być niedawno zalogowany.
+      Wyloguj się, następnie zaloguj ponownie i spróbuj zmienić email.
+    </p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="closeDialog()">OK</button>
+  </div>
+</mat-card>

@@ -1,0 +1,56 @@
+<mat-card>
+  <div class="search-div">
+    <button mat-raised-button color="accent" (click)="openAddBookingDialog()">Dodaj rezerwację</button>
+    <mat-form-field class="search-form-field" floatLabel="never">
+      <input matInput [(ngModel)]="searchKey" placeholder="Wyszukaj" autocomplete="off" (keyup)="applyFilter()">
+      <mat-icon matSuffix *ngIf="!searchKey">search</mat-icon>
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="clearSearchKey()">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="mat-elevation-z8">
+    <mat-table [dataSource]="bookingData" matSort>
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Data rezerwacji</mat-header-cell>
+        <mat-cell *matCellDef="let booking">{{booking.date}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="startTime">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Godzina rozpoczęcia</mat-header-cell>
+        <mat-cell *matCellDef="let booking">{{booking.startTime}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="endTime">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Godzina zakończenia</mat-header-cell>
+        <mat-cell *matCellDef="let booking">{{booking.endTime}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="hide-column">Imię</mat-header-cell>
+        <mat-cell *matCellDef="let booking" class="hide-column">{{booking.firstName}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Nazwisko</mat-header-cell>
+        <mat-cell *matCellDef="let booking">{{booking.lastName}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="persons">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="hide-column">Liczba osób</mat-header-cell>
+        <mat-cell *matCellDef="let booking" class="hide-column">{{booking.persons}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="bookingLoading">
+        <mat-footer-cell *matFooterCellDef>
+          Wczytywanie danych rezerwacji...
+        </mat-footer-cell>
+      </ng-container>
+      <ng-container matColumnDef="noBooking">
+        <mat-footer-cell *matFooterCellDef>
+          Brak rezerwacji.
+        </mat-footer-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-footer-row *matFooterRowDef="['bookingLoading']" [ngClass]="{'hide': bookingData != null}"></mat-footer-row>
+      <mat-footer-row *matFooterRowDef="['noBooking']"
+        [ngClass]="{'hide': !(bookingData != null && bookingData.data.length == 0)}"></mat-footer-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 15]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+  </div>
+</mat-card>
